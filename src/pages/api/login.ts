@@ -25,8 +25,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if(isMach){
       const token = sign({ email }, config.apiKey, { expiresIn: '15m' })
+      const refreshToken = sign({ email }, config.apiKey, { expiresIn: '15m' })
 
-      res.status(200).json({token})
+      res.status(200).json({token, refreshToken})
     } else {
       res.status(401).json({ message: 'Invalid credentials1' });
     }

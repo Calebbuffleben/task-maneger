@@ -1,4 +1,3 @@
-import { ILogin } from "@/interfaces/ILogin";
 import { verify, sign, JwtPayload } from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
 import { config } from "../../../config"
@@ -17,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse 
   }
 
   try {
-    const decoded = verify(token, config.apiKey) as { email: string };
+    const decoded = verify(token, config.apiKey) as IToken;
     const newToken = sign({ email: decoded.email }, config.apiKey, { expiresIn: '15m' })
 
     res.status(200).json({ token: newToken })
