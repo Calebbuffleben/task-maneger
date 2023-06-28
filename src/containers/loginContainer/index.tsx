@@ -3,11 +3,14 @@ import CardComponent from "@/components/ui/cardComponent";
 import FormComponent from "@/components/FormComponent";
 import PageContainerComponent from "@/components/ui/pageContainerComponent";
 import TitleComponent from "@/components/ui/title-component/TitleComponent";
-import { auth } from "@/services/auth";
+import { authService } from "@/services/auth";
 import { ILogin } from "@/interfaces/ILogin";
+import { useRouter } from 'next/router';
 
 //COMPONENT
 const LoginContainer = () => {
+  const router = useRouter();
+
   const fields = [
     {
       label: 'Email',
@@ -26,9 +29,14 @@ const LoginContainer = () => {
   ];
   console.log('Initial values', fields)
 
-  const handleSubmit = async (values: ILogin) => {
+  const handleSubmit = async ({ email, password }: ILogin) => {
+    console.log('verificando email -------------', email)
     try{
-      await auth.login(values)
+      const response = await authService.login({ email, password })
+
+      if(response)
+        router.push('/dashboard')
+
     } catch(err) {
       //onFailure(err.message);
     }

@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "../ui/form";
 
 const FormComponent = ({ fields, onSubmit, submitButtonLabel }: any) => {
+
   const [value, setValue] = useState(fields.reduce((acc, {name, initialValue}) => {
     acc[name] = initialValue;
 
     return acc;
-  }, {}));
+  }, {}))
 
-  console.log('After Reduce: ', value)
+  useEffect(() => {
+    console.log('Value changee ee eeeeee  ee', value)
+  }, [value])
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setValue({...value, [name]: value});
+    //Value não está construindo um array, por esse motivo está enviando apenas password, que é o último valor
+    //setValue([...value, {[value]: name}]);
+
+    setValue([...value, { [name]: value}])
   }
 
   const handleSubmit = (event) => {
@@ -29,7 +35,6 @@ const FormComponent = ({ fields, onSubmit, submitButtonLabel }: any) => {
     value: value[name]
   }))
 
-  console.log("Form Fields:", formFields)
   return (
     <Form
       fields={formFields}

@@ -9,10 +9,10 @@ const REFRESH_TOKEN_KEY = 'refreshToken';
 
 
 // OBJECTS
-export const auth = {
-
+export const authService = {
+  //createLogin: async
   //FUNCTIONS
-  async login({ email, password }: ILogin): Promise<void> {
+  async login({ email, password }: ILogin) {
     try {
       const response = await api.post('api/login', {
         email,
@@ -28,6 +28,8 @@ export const auth = {
         refreshToken(refreshToken);
       }
 
+      return response;
+
     } catch (error) {
       handleLoginFailure(error)
     }
@@ -38,7 +40,7 @@ export const auth = {
 }
 
 // FUNCTIONS
-export async function refreshToken(refresh){
+export async function refreshToken(refresh: string){
   const response = await api.post('api/refresh', {
     headers: {
       'Authorization': `Bearer ${refresh}`
