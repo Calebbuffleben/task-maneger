@@ -1,4 +1,8 @@
-const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: any) => { console.log('The fields',fields); return (
+const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: any) => {
+
+  console.log('The fields',fields);
+
+  return (
   <form onSubmit={onSubmit} className="space-y-6">
       {
         fields.map(({label, name, type, placeholder, value}: any) => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Form from "../ui/form";
 
-const FormComponent = ({ fields, onSubmit, submitButtonLabel }: any) => {
+const FormComponent = ({ fields, submitForm, onSubmit, submitButtonLabel }: any) => {
 
   const [value, setValue] = useState(fields.reduce((acc, {name, initialValue}) => {
     acc[name] = initialValue;
@@ -20,11 +20,15 @@ const FormComponent = ({ fields, onSubmit, submitButtonLabel }: any) => {
     //setValue([...value, {[value]: name}]);
 
     setValue([...value, { [name]: value}])
+
+    if(event.target.name){
+      onSubmit(event.target)
+    }
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onSubmit(value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitForm();
   }
 
   const formFields = fields.map(({ label, name, type, placeholder}) => ({

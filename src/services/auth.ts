@@ -19,17 +19,18 @@ export const authService = {
         password
       });
 
+      console.log('RESPONSE', response)
+
       const token = response.data.token;
       const refreshToken = response.data.refreshToken;
 
-      if(response.data.success) {
+      if(response.status === 200) {
         handleLoginSuccess(token, refreshToken);
       }  else {
         refreshToken(refreshToken);
       }
 
-      return response;
-
+      return  response.status;
     } catch (error) {
       handleLoginFailure(error)
     }

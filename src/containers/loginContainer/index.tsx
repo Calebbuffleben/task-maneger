@@ -6,10 +6,13 @@ import TitleComponent from "@/components/ui/title-component/TitleComponent";
 import { authService } from "@/services/auth";
 import { ILogin } from "@/interfaces/ILogin";
 import { useRouter } from 'next/router';
+import { useState } from "react";
 
 //COMPONENT
 const LoginContainer = () => {
   const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const fields = [
     {
@@ -29,13 +32,24 @@ const LoginContainer = () => {
   ];
   console.log('Initial values', fields)
 
-  const handleSubmit = async ({ email, password }: ILogin) => {
-    console.log('verificando email -------------', email)
+  const handleSubmit = async (event) => {
+    if(event.name === 'email'){
+      setEmail(event.value)
+    }
+    if(event.name === 'password'){
+      setPassword(event.value)
+    }
+
+    console.log('This is email and password', email, password)
+  }
+
+  const submitForm = async () => {
     try{
       const response = await authService.login({ email, password })
 
-      if(response)
+      if(response === 200){
         router.push('/dashboard')
+      }
 
     } catch(err) {
       //onFailure(err.message);
@@ -47,7 +61,7 @@ const LoginContainer = () => {
     <TitleComponent title='Sign in to your account'/>
 
     <CardComponent>
-      <FormComponent fields={fields} onSubmit={handleSubmit} submitButtonLabel='Login' />
+      <FormComponent fields={fields} submitForm={submitForm} onSubmit={handleSubmit} submitButtonLabel='Login' />
       <div className="mt-6">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
