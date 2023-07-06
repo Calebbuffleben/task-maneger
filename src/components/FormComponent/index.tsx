@@ -1,43 +1,71 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Form from "../ui/form";
 
-const FormComponent = ({ fields, submitForm, onSubmit, submitButtonLabel }: any) => {
+type TValue =  string | { [x: string]: string; }
+interface IFields {
+  label?: string;
+  name: string;
+  type?: string;
+  placeholder?: string;
+  initialValue?: string;
+  [key: string]: string | undefined;
+}
 
-  const [value, setValue] = useState(fields.reduce((acc, {name, initialValue}) => {
-    acc[name] = initialValue;
+interface IFormComponent {
+  fields: Array<IFields> | string;
+  submitForm: () => void;
+  onSubmit: (event: ChangeEvent<HTMLInputElement>) => void;
+  submitButtonLabel: string;
+}
 
-    return acc;
-  }, {}))
+const FormComponent = ({
+  fields,
+  submitForm,
+  onSubmit,
+  submitButtonLabel
+}: IFormComponent) => {
 
-  useEffect(() => {
-    console.log('Value changee ee eeeeee  ee', value)
-  }, [value])
+  const [value, setValue] = useState<TValue[] | IFields | string>(() => {
+    if (typeof fields !== "string") {
+      return fields.reduce((acc: { [x: string]: string }, {name, initialValue}: IFields) => {
+        acc[String(name)] = String(initialValue);
 
-  const handleChange = (event) => {
+        return acc;
+      },
+      {}
+    ) as IFields;
+  } else {
+    return fields as string;
+  }
+});
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    //Value não está construindo um array, por esse motivo está enviando apenas password, que é o último valor
-    //setValue([...value, {[value]: name}]);
-
-    setValue([...value, { [name]: value}])
+    if (Array.isArray(value)) {
+      setValue([...value, { [name]: value }]);
+    } else {
+      setValue(value);
+    }
 
     if(event.target.name){
-      onSubmit(event.target)
+      onSubmit(event)
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     submitForm();
   }
 
-  const formFields = fields.map(({ label, name, type, placeholder}) => ({
+  const formFields = Array.isArray(fields)
+  ? fields.map(({ label, name, type, placeholder}: IFields) => ({
     label,
     name,
     type,
     placeholder,
-    value: value[name]
-  }))
+    value: (value as IFields)[name],
+  })) : []
 
   return (
     <Form

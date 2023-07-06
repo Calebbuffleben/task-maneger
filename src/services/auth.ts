@@ -10,7 +10,7 @@ const REFRESH_TOKEN_KEY = 'refreshToken';
 
 // OBJECTS
 export const authService = {
-  //createLogin: async
+
   //FUNCTIONS
   async login({ email, password }: ILogin) {
     try {
@@ -62,9 +62,6 @@ export function setAuthToken(token: string, refreshToken?: string): void {
   if(refreshToken){
     localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
   }
-
-  //Verificar quando enviar alguma requisição para o servidor se o token está valido,
-  //se não estiver buscar o refresh. Caso o refresh token também estiver inválido, deslogar e logar novamente.
 
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }

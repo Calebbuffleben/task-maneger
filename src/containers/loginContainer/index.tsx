@@ -4,9 +4,8 @@ import FormComponent from "@/components/FormComponent";
 import PageContainerComponent from "@/components/ui/pageContainerComponent";
 import TitleComponent from "@/components/ui/title-component/TitleComponent";
 import { authService } from "@/services/auth";
-import { ILogin } from "@/interfaces/ILogin";
 import { useRouter } from 'next/router';
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 //COMPONENT
 const LoginContainer = () => {
@@ -30,17 +29,14 @@ const LoginContainer = () => {
       initialValue: '',
     },
   ];
-  console.log('Initial values', fields)
 
-  const handleSubmit = async (event) => {
-    if(event.name === 'email'){
-      setEmail(event.value)
+  const handleSubmit = async (event: ChangeEvent<HTMLInputElement>) => {
+    if(event.target.name === 'email'){
+      setEmail(event.target.value)
     }
-    if(event.name === 'password'){
-      setPassword(event.value)
+    if(event.target.name === 'password'){
+      setPassword(event.target.value)
     }
-
-    console.log('This is email and password', email, password)
   }
 
   const submitForm = async () => {

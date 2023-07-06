@@ -1,8 +1,4 @@
-const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: any) => {
-
-  console.log('The fields',fields);
-
-  return (
+const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: any) => (
   <form onSubmit={onSubmit} className="space-y-6">
       {
         fields.map(({label, name, type, placeholder, value}: any) => {
@@ -56,36 +52,6 @@ const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: any) => {
         </button>
       </div>
   </form>
-)};
+);
 
 export default Form;
-
-{/*<label htmlFor="email" className="block text-sm font-medium text-gray-700">
-        Email address
-      </label>
-      <div className="mt-1">
-        <input
-          id="email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-          className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-        />
-</div> */}
-
-<div>
-{ /*<label htmlFor="password" className="block text-sm font-medium text-gray-700">
-  Password
-</label>
-<div className="mt-1">
-  <input
-    id="password"
-    name="password"
-    type="password"
-    autoComplete="current-password"
-    required
-    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-  />
-</div> */}
-</div>
