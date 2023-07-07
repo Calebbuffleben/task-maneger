@@ -25,6 +25,7 @@ const FormComponent = ({
   submitButtonLabel
 }: IFormComponent) => {
 
+  //Change the responsability of components
   const [value, setValue] = useState<TValue[] | IFields | string>(() => {
     if (typeof fields !== "string") {
       return fields.reduce((acc: { [x: string]: string }, {name, initialValue}: IFields) => {
