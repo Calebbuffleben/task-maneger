@@ -1,9 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import FormComponent from '../../components/FormComponent';
+import '@testing-library/jest-dom/extend-expect';
 
 describe('should be render a form component', () => {
-  test('renders the component', async () => {
+  test('renders the component', () => {
     const formComponentProps = {
       fields: [
         {
@@ -27,8 +28,8 @@ describe('should be render a form component', () => {
     };
     render(<FormComponent  {...formComponentProps} />);
 
-    const layoutComponent = await screen.findByRole('input');
+    const layoutComponent = screen.getByRole('textbox');
 
-    expect(layoutComponent).toBe({});
+    expect(layoutComponent).toBeInTheDocument();
   })
 })
