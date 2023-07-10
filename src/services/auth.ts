@@ -7,7 +7,6 @@ import { ILogin } from '@/interfaces/ILogin';
 const TOKEN_KEY = 'authToken';
 const REFRESH_TOKEN_KEY = 'refreshToken';
 
-
 // OBJECTS
 export const authService = {
 
@@ -18,8 +17,6 @@ export const authService = {
         email,
         password
       });
-
-      console.log('RESPONSE', response)
 
       const token = response.data.token;
       const refreshToken = response.data.refreshToken;

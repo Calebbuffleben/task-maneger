@@ -1,3 +1,5 @@
+import React from "react";
+
 const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: any) => (
   <form onSubmit={onSubmit} className="space-y-6">
       {
