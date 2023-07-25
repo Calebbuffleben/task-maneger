@@ -1,9 +1,26 @@
-import React from "react";
+import { IFields } from "@/interfaces/IFields";
+import React, { ChangeEventHandler } from "react";
+import { FormEventHandler } from "react";
 
-const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: any) => (
+interface IForm {
+  fields: Array<IFields> | string[];
+  onChange: ChangeEventHandler<HTMLInputElement>
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  submitButtonLabel: string;
+}
+
+interface IFormFields {
+  label: string;
+  name: string;
+  type: string;
+  placeholder: string;
+  value: string;
+}
+
+const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: IForm) => (
   <form onSubmit={onSubmit} className="space-y-6">
       {
-        fields.map(({label, name, type, placeholder, value}: any) => {
+        fields.map(({label, name, type, placeholder, value}: IFields | string | IFormFields) => {
           return (
             <div key={name}>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -36,12 +53,6 @@ const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: any) => (
         <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
           Remember me
         </label>
-      </div>
-
-      <div className="text-sm">
-        {/* <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-          Forgot your password?
-</Link> */}
       </div>
     </div>
 
