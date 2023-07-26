@@ -9,18 +9,10 @@ interface IForm {
   submitButtonLabel: string;
 }
 
-interface IFormFields {
-  label: string;
-  name: string;
-  type: string;
-  placeholder: string;
-  value: string;
-}
-
 const Form = ({  fields, onChange, onSubmit, submitButtonLabel }: IForm) => (
   <form onSubmit={onSubmit} className="space-y-6">
       {
-        fields.map(({label, name, type, placeholder, value}: IFields | string | IFormFields) => {
+        fields.map(({label, name, type, placeholder, value}: any) => {
           return (
             <div key={name}>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
