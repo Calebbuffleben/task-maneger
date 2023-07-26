@@ -1,22 +1,10 @@
+import React from "react";
+import { IFields } from "@/interfaces/IFields";
+import { IFormComponent } from "@/interfaces/IFormComponent";
 import { ChangeEvent, useState } from "react";
 import Form from "../ui/form";
 
 type TValue =  string | { [x: string]: string; }
-interface IFields {
-  label?: string;
-  name: string;
-  type?: string;
-  placeholder?: string;
-  initialValue?: string;
-  [key: string]: string | undefined;
-}
-
-interface IFormComponent {
-  fields: Array<IFields> | string;
-  submitForm: () => void;
-  onSubmit: (event: ChangeEvent<HTMLInputElement>) => void;
-  submitButtonLabel: string;
-}
 
 const FormComponent = ({
   fields,
@@ -25,6 +13,7 @@ const FormComponent = ({
   submitButtonLabel
 }: IFormComponent) => {
 
+  //Change the responsability of components
   const [value, setValue] = useState<TValue[] | IFields | string>(() => {
     if (typeof fields !== "string") {
       return fields.reduce((acc: { [x: string]: string }, {name, initialValue}: IFields) => {
@@ -69,6 +58,7 @@ const FormComponent = ({
 
   return (
     <Form
+      data-testid="form-component"
       fields={formFields}
       onChange={handleChange}
       onSubmit={handleSubmit}
