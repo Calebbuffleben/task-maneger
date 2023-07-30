@@ -1,3 +1,4 @@
+import { IUserInfo } from "@/interfaces/IUserInfo";
 import React, { ReactNode, useState } from "react";
 import { useContext } from "react";
 import { createContext, FC } from "react"
