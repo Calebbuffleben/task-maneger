@@ -1,69 +1,137 @@
+import React from "react";
 
 const Dashboard = () => {
   return (
-
-<div className="page">
-  <div className="pageHeader">
-    <div className="title">Dashboard</div>
-    <div className="userPanel"><i className="fa fa-chevron-down"></i><span className="username">John Doe</span><img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/73.jpg" width="40" height="40"/></div>
-  </div>
-  <div className="main">
-    <div className="nav">
-      <div className="searchbox">
-        <div><i className="fa fa-search"></i>
-          <input type="search" placeholder="Search"/>
-        </div>
-      </div>
-      <div className="menu">
-        <div className="title">Navigation</div>
-        <ul>
-          <li> <i className="fa fa-home"></i>Home</li>
-          <li><i className="fa fa-signal"></i>Activity</li>
-          <li className="active"> <i className="fa fa-tasks"></i>Manage Tasks</li>
-          <li> <i className="fa fa-envelope"></i>Messages</li>
+    <div className="bg-gray-100 min-h-screen p-4">
+      {/* Sidebar */}
+      <aside className="bg-white p-4 w-64 shadow-md rounded-lg">
+        <h2 className="text-xl font-semibold mb-4">Projects</h2>
+        <ul className="space-y-2">
+          <li className="text-blue-600 font-medium">Project 1</li>
+          <li>Project 2</li>
+          <li>Project 3</li>
+          {/* Add more projects */}
         </ul>
-      </div>
-    </div>
-    <div className="view">
-      <div className="viewHeader">
-        <div className="title">Manage Tasks</div>
-        <div className="functions">
-          <div className="button active">Add New Task</div>
-          <div className="button">Completed</div>
-          <div className="button inverz"><i className="fa fa-trash-o"></i></div>
-        </div>
-      </div>
-      <div className="content">
-        <div className="list">
-          <div className="title">Today</div>
-          <ul>
-            <li className="checked"><i className="fa fa-check-square-o"></i><span>Update team page</span>
-              <div className="info">
-                <div className="button green">In progress</div><span>Complete by 25/04/2014</span>
+      </aside>
+      <main className="my-4 flex flex-col gap-4">
+        {/* Project Details and Summary */}
+        <section className="bg-white p-4 shadow-md rounded-lg">
+          <h2 className="text-xl font-semibold mb-4">Project 1</h2>
+          <div className="flex items-center space-x-4">
+            <span className="text-gray-600">Status:</span>
+            <span className="px-2 py-1 rounded-lg bg-blue-500 text-white text-sm">
+              In Progress
+            </span>
+          </div>
+          <div className="flex items-center space-x-4">
+            <span className="text-gray-600">Start Date:</span>
+            <span>2023-07-30</span>
+          </div>
+          <div className="flex items-center space-x-4">
+            <span className="text-gray-600">End Date:</span>
+            <span>2023-08-15</span>
+          </div>
+        </section>
+        {/* Task Cards */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="w-full p-4 bg-white shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold mb-2">To Do</h2>
+            <div className="space-y-2">
+              <div className="bg-gray-200 p-2 rounded-lg">
+                <h3 className="text-lg font-semibold">Task 1</h3>
+                <p className="text-gray-500">Task description goes here.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Due Date: 2023-08-10</span>
+                  <button className="px-2 py-1 rounded-lg bg-blue-500 text-white text-sm">
+                    Start
+                  </button>
+                </div>
               </div>
-            </li>
-            <li><i className="fa fa-square-o"></i><span>Design a new logo</span>
-              <div className="info">
-                <div className="button">Pending</div><span>Complete by 10/04/2014</span>
+              {/* Add more To Do tasks */}
+            </div>
+          </div>
+          <div className="w-full p-4 bg-white shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold mb-2">In Progress</h2>
+            <div className="space-y-2">
+              <div className="bg-yellow-200 p-2 rounded-lg">
+                <h3 className="text-lg font-semibold">Task 2</h3>
+                <p className="text-gray-500">Task description goes here.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Due Date: 2023-08-12</span>
+                  <button className="px-2 py-1 rounded-lg bg-blue-500 text-white text-sm">
+                    Complete
+                  </button>
+                </div>
               </div>
-            </li>
-            <li><i className="fa fa-square-o"></i><span>Find a front end developer</span>
-              <div className="info"></div>
-            </li>
-          </ul>
-        </div>
-        <div className="list">
-          <div className="title">Tomorrow</div>
-          <ul>
-            <li><i className="fa fa-square-o"></i><span>Find front end developer</span>
-              <div className="info"></div>
-            </li>
-          </ul>
-        </div>
-      </div>
+              {/* Add more In Progress tasks */}
+            </div>
+          </div>
+          <div className="w-full p-4 bg-white shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold mb-2">Done</h2>
+            <div className="space-y-2">
+              <div className="bg-green-200 p-2 rounded-lg">
+                <h3 className="text-lg font-semibold">Task 3</h3>
+                <p className="text-gray-500">Task description goes here.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Due Date: 2023-08-08</span>
+                  <span className="px-2 py-1 rounded-lg bg-green-500 text-white text-sm">
+                    Completed
+                  </span>
+                </div>
+              </div>
+              {/* Add more Done tasks */}
+            </div>
+          </div>
+        </section>
+        {/* Create New Task Form */}
+        <section className="bg-white p-4 shadow-md rounded-lg">
+          <h2 className="text-xl font-semibold mb-4">Create New Task</h2>
+          <form className="space-y-4">
+            <div>
+              <label className="block text-gray-600 font-medium mb-2" htmlFor="title">
+                Task Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                className="w-full border-gray-300 border rounded-lg p-2"
+                placeholder="Enter task title"
+              />
+            </div>
+            <div>
+              <label className="block text-gray-600 font-medium mb-2" htmlFor="description">
+                Task Description
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                rows="4"
+                className="w-full border-gray-300 border rounded-lg p-2 resize-none"
+                placeholder="Enter task description"
+              ></textarea>
+            </div>
+            <div>
+              <label className="block text-gray-600 font-medium mb-2" htmlFor="dueDate">
+                Due Date
+              </label>
+              <input
+                type="date"
+                id="dueDate"
+                name="dueDate"
+                className="w-full border-gray-300 border rounded-lg p-2"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full px-4 py-2 rounded-lg bg-blue-500 text-white text-sm"
+            >
+              Create Task
+            </button>
+          </form>
+        </section>
+      </main>
     </div>
-  </div>
-</div>
   )
 }
 
