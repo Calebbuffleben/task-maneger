@@ -106,7 +106,6 @@ const Dashboard = () => {
               <textarea
                 id="description"
                 name="description"
-                rows="4"
                 className="w-full border-gray-300 border rounded-lg p-2 resize-none"
                 placeholder="Enter task description"
               ></textarea>
