@@ -3,6 +3,9 @@ import React, { ReactNode, useState } from "react";
 import { useContext } from "react";
 import { createContext, FC } from "react"
 
+const USER_NAME = 'userName';
+const USER_EMAIL = 'userEmail';
+
 const initialState: IUserInfo = {
     email: '',
     name: ''
@@ -17,7 +20,10 @@ const UserInfoProvider: FC = ({ children }: ReactNode) => {
 
     const getUsers = () => {
         try {
-            const response = 
+            const userName: string = localStorage.getItem(USER_NAME);
+            const userEmail: string = localStorage.getItem(USER_EMAIL);
+            
+            setUser({ email: userEmail, name: userName })
         } catch (error) {
             console.error(error);
         }
