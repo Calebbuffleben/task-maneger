@@ -15,6 +15,14 @@ const UserInfoContext = createContext({
 const UserInfoProvider: FC = ({ children }: ReactNode) => {
     const [user, setUser] = useState<IUserInfo>(initialState);
 
+    const getUsers = () => {
+        try {
+            const response = 
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return <UserInfoContext.Provider value={{user}}>{children}</UserInfoContext.Provider>
 }
 
