@@ -1,7 +1,6 @@
 import { IUserInfo } from "@/interfaces/IUserInfo";
-import React, { ReactNode, useState } from "react";
-import { useContext } from "react";
-import { createContext, FC } from "react"
+import React, { useState, useContext, createContext, FC } from "react";
+import { useEffect } from "react";
 
 const USER_NAME = 'userName';
 const USER_EMAIL = 'userEmail';
@@ -15,13 +14,21 @@ const UserInfoContext = createContext({
     user: initialState
 });
 
-const UserInfoProvider: FC = ({ children }: ReactNode) => {
+interface IUserInfoProvider {
+    children: React.ReactNode;
+  }
+
+const UserInfoProvider: FC<IUserInfoProvider> = ({ children }) => {
     const [user, setUser] = useState<IUserInfo>(initialState);
+
+    useEffect(() => {
+        getUsers();
+    }, [])
 
     const getUsers = () => {
         try {
-            const userName: string = localStorage.getItem(USER_NAME);
-            const userEmail: string = localStorage.getItem(USER_EMAIL);
+            const userName: string = localStorage.getItem(USER_NAME) || '';
+            const userEmail: string = localStorage.getItem(USER_EMAIL) || '';
             
             setUser({ email: userEmail, name: userName })
         } catch (error) {
