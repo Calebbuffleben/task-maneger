@@ -2,6 +2,10 @@ import { IUserInfo } from "@/interfaces/IUserInfo";
 import React, { useState, useContext, createContext, FC } from "react";
 import { useEffect } from "react";
 
+interface IUserInfoProvider {
+    children: React.ReactNode;
+}
+
 const USER_NAME = 'userName';
 const USER_EMAIL = 'userEmail';
 
@@ -13,10 +17,6 @@ const initialState: IUserInfo = {
 const UserInfoContext = createContext({
     user: initialState
 });
-
-interface IUserInfoProvider {
-    children: React.ReactNode;
-  }
 
 const UserInfoProvider: FC<IUserInfoProvider> = ({ children }) => {
     const [user, setUser] = useState<IUserInfo>(initialState);

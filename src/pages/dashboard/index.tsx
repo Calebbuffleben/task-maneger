@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "@/contexts/authentication/authContext";
 
 const Dashboard = () => {
+  const { isLoggedIn } = useContext(AuthContext)
+
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
+    isLoggedIn && <div className="bg-gray-100 min-h-screen p-4">
       {/* Sidebar */}
       <aside className="bg-white p-4 w-64 shadow-md rounded-lg">
         <h2 className="text-xl font-semibold mb-4">Projects</h2>

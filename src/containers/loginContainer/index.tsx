@@ -1,5 +1,5 @@
 // IMPORTS
-import React from "react";
+import React, { useContext } from "react";
 import CardComponent from "@/components/ui/cardComponent";
 import FormComponent from "@/components/FormComponent";
 import PageContainerComponent from "@/components/ui/pageContainerComponent";
@@ -7,9 +7,11 @@ import TitleComponent from "@/components/ui/title-component/TitleComponent";
 import { authService } from "@/services/auth";
 import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from "react";
+import { AuthContext } from "@/contexts/authentication/authContext";
 
 //COMPONENT
 const LoginContainer = () => {
+  const { login } = useContext(AuthContext);
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,6 +47,7 @@ const LoginContainer = () => {
       const response = await authService.login({ email, password })
 
       if(response === 200){
+        login();
         router.push('/dashboard')
       }
 
