@@ -1,11 +1,40 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, FC } from "react";
+
+interface IAuthProvider {
+    children: React.ReactNode
+}
+
+interface IAuthContext {
+    isLoggedIn: boolean;
+    login: () => void;
+    logout: () => void;
+}
 
 const initialState = false;
 
-const AuthContext = createContext({
-    isLoggedIn: initialState
+const AuthContext = createContext<IAuthContext>({
+    isLoggedIn: initialState,
+    login: () => { 
+        return ''
+    },
+    logout: () => {
+        return ''
+    },
 });
 
-const AuthProvider = ({ children }) => {
-    const [ isLoggedIn,setIsLoggedIn ] = useState();
+const AuthProvider: FC<IAuthProvider> = ({ children }) => {
+    const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
+
+    const login = () => {
+        setIsLoggedIn(true)
+        console.log('Fez login')
+    }
+
+    const logout = () => {
+        setIsLoggedIn(false)
+    }
+
+    return <AuthContext.Provider value={{isLoggedIn, login, logout}}>{children}</AuthContext.Provider>
 }
+
+export { AuthContext, AuthProvider as default }

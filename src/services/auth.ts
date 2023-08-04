@@ -12,7 +12,6 @@ const USER_EMAIL = 'userEmail';
 
 // OBJECTS
 export const authService = {
-
   //FUNCTIONS
   async login({ email, password }: ILogin) {
     try {
