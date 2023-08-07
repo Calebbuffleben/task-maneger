@@ -27,7 +27,6 @@ const AuthProvider: FC<IAuthProvider> = ({ children }) => {
 
     const login = () => {
         setIsLoggedIn(true)
-        console.log('Fez login')
     }
 
     const logout = () => {
