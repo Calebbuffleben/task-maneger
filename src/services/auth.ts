@@ -1,18 +1,14 @@
-// IMPORTS
 import api from './api';
 import { IRequestError } from '@/interfaces/IError';
 import { ILogin } from '@/interfaces/ILogin';
 import { IUserInfo } from '@/interfaces/IUserInfo';
 
-// VARIABLES
 const TOKEN_KEY = 'authToken';
 const REFRESH_TOKEN_KEY = 'refreshToken';
 const USER_NAME = 'userName';
 const USER_EMAIL = 'userEmail';
 
-// OBJECTS
 export const authService = {
-  //FUNCTIONS
   async login({ email, password }: ILogin) {
     try {
       const response = await api.post('api/login', {
@@ -59,7 +55,7 @@ export async function refreshToken(refresh: string){
 
 export function setAuthToken(token: string, refreshToken?: string, user?: IUserInfo): void {
   localStorage.setItem(TOKEN_KEY, token);
-  // Salvar como Http only cookie
+
   if(refreshToken){
     localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
   }
