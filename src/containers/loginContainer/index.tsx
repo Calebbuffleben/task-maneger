@@ -1,14 +1,13 @@
 // IMPORTS
-import React, { useContext } from "react";
+import React, { useContext, ChangeEvent, useState } from "react";
+import { authService } from "@/services/auth";
+import { useRouter } from 'next/router';
+import { AuthContext } from "@/contexts/authentication/authContext";
+import MediaLoginComponent from "@/components/ui/mediaLoginComponent";
 import CardComponent from "@/components/ui/cardComponent";
 import FormComponent from "@/components/FormComponent";
 import PageContainerComponent from "@/components/ui/pageContainerComponent";
 import TitleComponent from "@/components/ui/title-component/TitleComponent";
-import { authService } from "@/services/auth";
-import { useRouter } from 'next/router';
-import { ChangeEvent, useState } from "react";
-import { AuthContext } from "@/contexts/authentication/authContext";
-import MediaLoginComponent from "@/components/ui/mediaLoginComponent";
 
 //COMPONENT
 const LoginContainer = () => {
@@ -60,7 +59,6 @@ const LoginContainer = () => {
   return (
   <PageContainerComponent>
     <TitleComponent title='Sign in to your account'/>
-
     <CardComponent>
       <FormComponent fields={fields} submitForm={submitForm} onSubmit={handleSubmit} submitButtonLabel='Login' />
       <MediaLoginComponent />
