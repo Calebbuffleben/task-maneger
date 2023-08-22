@@ -1,7 +1,5 @@
 import { IUserInfo } from "@/interfaces/IUserInfo";
-import React, { useState, useContext, createContext, FC } from "react";
-import { useEffect } from "react";
-
+import React, { useEffect, useState, useContext, createContext, FC } from "react";
 interface IUserInfoProvider {
     children: React.ReactNode;
 }
